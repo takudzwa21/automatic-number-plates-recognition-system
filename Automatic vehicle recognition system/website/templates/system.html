@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %} 
+
+
+{% block css %}
+  <style>
+.flash-content { 
+  display: flex;          
+  align-items: center;   /* Centers vertically */
+  justify-content: center; /* Centers horizontally */ 
+}
+
+.flash-content { 
+  display: flex;          
+  align-items: center;
+}
+.close-btn {
+ top: 8px;          /* Adjust for vertical placement */
+  right: 8px;        /* Adjust for horizontal placement */
+  background: none;  /* No background color */
+  border: none;      /* No border */
+  font-size: 30px;   /* Size of the 'X' */
+  color: #c61212;       /* A dark grey color */
+  cursor: pointer;   /* Indicate that it's clickable */
+}
+
+.close-btn:hover {
+    color: #000;  /* Darker color on hover */
+}
+  </style>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+<div class="parent">
+  
+      <div class="child">
+        <button onclick="turnCameraOn()" class="on">Turn Camera On</button>
+        <button onclick="turnCameraOff()" class="off">Turn Camera Off</button>
+        <button onclick="startRecognition()" class="start">Start System</button>
+        <button onclick="stopRecognition()" class="stop">Stop System</button>
+       
+        <div id="flash-message" class="flash-container"> 
+        </div>
+    
+        
+        <img src="{{ url_for('system.video_feed') }}" width="450" height="420" placeholder="static/live_stream_placeholdeh.pgn">
+
+
+        
+   
+      </div>
+
+      <div class="child">
+        <div class="box"> 
+          <div class="graph">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> 
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            {% if user.supervisor %}
+            <a href="{{ url_for('home_routes.clear_entry_approvals') }}" class="btn btn-danger m-2"  onclick="return confirm('Are you sure you want to clear the chart?')">Clear Chart</a> 
+            <a href="{{ url_for('logs') }}">Click here for system logs</a> 
+            
+            {% endif %}
+            <a href="/clients" class="btn btn-success m-2">Add New Vehicle</a> 
+
+
+         </div>
+       </div>
+
+      </div>
+
+
+    </div>
+
+    <script>function turnCameraOn() {
+      fetch('/turn_on')
+    }
+    
+    function turnCameraOff() {
+      fetch('/turn_off')
+    }
+    
+    function startRecognition() {
+      fetch('/start_recognition')
+    }
+    
+    function stopRecognition() {
+      fetch('/stop_recognition')
+    }
+    
+    setInterval(function() {
+      fetch('/get_latest_plate')
+        .then(response => response.json())
+        .then(data => {
+          const flashMessage = document.getElementById('flash-message');
+          flashMessage.innerHTML = ''; 
+    
+          if (data.status) { 
+            const flashContent = document.createElement('div');
+            flashContent.classList.add('flash-content');
+    
+            const flashText = document.createElement('span');
+            flashText.classList.add('flash-text');
+            flashText.textContent = `${data.status.charAt(0).toUpperCase() + data.status.slice(1)} ${data.plate}`;
+    
+            const closeButton = document.createElement('button');
+            closeButton.classList.add('close-btn');
+            closeButton.innerHTML = '&times;';
+            closeButton.addEventListener('click', () => {
+              flashMessage.innerHTML = ''; 
+            });
+    
+            flashContent.appendChild(flashText);
+            flashContent.appendChild(closeButton);
+            flashMessage.appendChild(flashContent);
+    
+            flashMessage.classList.remove('approved', 'denied'); 
+            flashMessage.classList.add(data.status); 
+          } 
+        });
+    }, 10000);
+    
+    function updateChart() {
+      fetch('/get_chart_data')
+        .then(response => response.json())
+        .then(data => {
+          myChart.data.datasets[0].data = [data.morning, data.midmorning, data.midday, data.afternoon, data.night];  
+          myChart.update(); 
+        })
+        .catch(error => {
+          console.error("Error fetching chart data:", error);
+        });
+    }
+    
+    var barColors = ["red", "green", "blue", "orange", "brown"];
+    var xValues = ["morning", "mid-morning", "mid-day", "afternoon", "night"];
+    
+    var myChart = new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: [] // Provide your initial y values here
+        }]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "Captures Vehicle Peak Hours"
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true 
+            }
+          }]
+        }
+      }
+    });
+    
+    updateChart();
+    setInterval(updateChart, 5000); 
+    
+     
+     </script>
+
+{% endblock %}

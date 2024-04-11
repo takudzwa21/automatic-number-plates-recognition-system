@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Deletion Notice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #336699;
+        }
+    </style>
+</head>
+<body>
+    <h1>Account Deletion Notice</h1>
+
+    <p>Dear {{ username }}</p>
+
+    <p>This is to notify that your guard account with the following details 
+       has been deleted from our system by the Supervisor:</p>
+
+    <h3>Account Details:</h3> 
+    <ul>
+        <li><strong>Username:</strong> {{ username }}</li>
+        <li><strong>Email:</strong> {{ email }}</li>
+    </ul>
+
+ 
+
+    <p>Sincerely,<br>
+    Your Security Team</p> 
+</body>
+</html>

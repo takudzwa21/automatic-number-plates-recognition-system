@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="form-inline mb-3" method="GET" action="{{ url_for('client_routes.search_clients') }}">
+    <input class="form-control mr-sm-2" type="search" id="searchInput" name="first_name" placeholder="Search by First Name.">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+<a href="/login_logout_report" class="btn btn-secondary m-2">View Reports</a> 
+
+  <a href="{{ url_for('client_routes.add_client') }}" class="btn btn-primary mb-3" id="createVehicleBtn">Add Client</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Client ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+          <td>{{ client.client_id }}</td>
+          <td>{{ client.first_name }}</td>
+          <td>{{ client.last_name }}</td> 
+          <td>
+            <a href="{{ url_for('client_routes.client_detail', client_id =client.client_id ) }}" class="btn btn-sm btn-info">Details</a>
+            <a href="{{ url_for('client_routes.update_client', client_id =client.client_id ) }}" class="btn btn-sm btn-warning">Update</a>
+            <a href="{{ url_for('client_routes.delete_client', client_id =client.client_id ) }}" class="btn btn-sm btn-danger">Delete</a>
+            <a href="{{ url_for('client_routes.login_logout_report', client_id =client.client_id ) }}" class="btn btn-secondary m-2">Report</a> 
+          </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  
+{% endblock %}

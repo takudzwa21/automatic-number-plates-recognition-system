@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!doctype html>
+<html>
+  <head>
+    {% block help %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %} Setting</title>
+    {% endblock %}
+    <style>
+
+      .content {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        color: #666;
+      }
+  
+      h1 {
+        text-align: center;
+        color: fadedblue;
+        color: #666;
+      }
+  
+      h2 {
+        margin-top: 40px;
+        color: #666;
+      }
+  
+      .question {
+        font-weight: bold;
+        color: #666;
+      }
+  
+      .answer {
+        margin-bottom: 20px;
+        color: #666;
+      }
+      p{
+        color: brown;
+        font-weight: bold;
+
+      }
+
+.footer{
+  width: 100%;;
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+      
+  
+
+    </style>
+  
+
+  </head>
+  <body>
+    <div class="content"> 
+      <body>
+        <h1>Settings And Frequently Asked Questions</h1>
+      
+      <p>If you need assistance or have any questions regarding our web app, please contact our support team at chikomot@africau.edu</p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="qsn1">
+        <div class="question">Q: How do I log-in to the system?</div>
+        <div class="answer">A: To log in the system, you must have an account created in your details. Navigate to the log in button and fill
+          you user name and password to access the system.
+        </div>
+      </div>
+
+      <div class="qsn2">
+        <div class="question">Q: How do I create an account?</div>
+        <div class="answer">A: To create an account, click on the "Sign Up" button on the homepage and fill out the registration form.</div>
+      </div>
+    
+      <div class="qsn3">
+        <div class="question">Q: How to start the System?</div>
+        <div class="answer">A: Our system is designed with easy-to-use interface, where on the home page you just need to press the "start system" button.
+          Then the system starts automatically. Now press the "Start Camera" button to start using the camera. Note that you need to have a camera connected to you device.
+        </div>
+      </div>
+    
+      <div class="qsn4">
+        <div class="question">Q: How do I add new vehicle?</div>
+        <div class="answer">A: To add new vehicle, click on "Add new vehicle" button on the screen and fill the two forms that will appear on the screen. 
+          The one is for the vehicle details and the other is for the vehicle owner details.
+        </div>
+      </div>
+    
+      
+    
+    </body>
+    
+    <div class="content">
+     
+      
+      <h2>Common Issues and Solutions</h2>
+      <ul>
+          <li><strong>Issue:</strong> Not recognizing vehicles properly</li>
+          <li><strong>Solution:</strong> Ensure proper lighting conditions and camera angle. Make sure the vehicle is within the camera's view.</li>
+          <li><strong>Issue:</strong> Slow processing time</li>
+          <li><strong>Solution:</strong> Check system resources and optimize if necessary. Ensure a stable internet connection for cloud-based processing.</li>
+          <li><strong>Issue:</strong> Error messages during recognition</li>
+          <li><strong>Solution:</strong> Refer to the error message for specific instructions. If unclear, contact support for assistance.</li>
+      </ul>
+      
+  </div>
+
+      
+    </div>
+    <div class="footer">
+      {% block footer %}
+      <h3 style="color: #666;">Contact Us </h3>
+      <p>If you have any further questions or need assistance, please don't hesitate to <a href="mailto:chikomott@africau.edu">contact our support team</a>.</p>
+      &copy; Copyright 2024 by <a href="mailto:chikomott@africau.edu">VAAR and Co</a>.
+      {% endblock %}
+    </div>
+  </body>
+</html>
+
+
+
+{% endblock %}

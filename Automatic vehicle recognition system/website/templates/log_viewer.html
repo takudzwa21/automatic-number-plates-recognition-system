@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %}Application Logs{% endblock %} {% block content
+    %}
+    <h1>Application Log</h1>
+    <pre id="log-container"></pre>
+
+    <script>
+        const eventSource = new EventSource('/log_stream');
+        const logContainer = document.getElementById('log-container');
+
+        eventSource.onmessage = function(event) {
+            logContainer.textContent += event.data + '\n'; // Add a newline character
+        };
+    </script>
+{% endblock %}

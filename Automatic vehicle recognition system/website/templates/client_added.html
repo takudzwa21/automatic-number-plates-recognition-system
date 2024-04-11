@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Our System!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #336699;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ client_name }}!</h1>
+
+    <p>Your have been successfully  added to our system.</p>
+
+    <h3>Your Account Details:</h3>
+    <ul>
+        <li><strong>Name:</strong> {{ client_name }}</li>
+        <li><strong>Email:</strong> {{ client_email }}</li>
+        <li><strong>Address:</strong> {{ client_address }}</li>
+        <li><strong>Phone number:</strong> {{ client_phone_number }}</li>
+        
+        </ul>
+        </ul>
+
+    <p>Thank you for joining!</p>
+
+    <p>Sincerely,<br>
+   VARRS</p>
+</body>
+</html>

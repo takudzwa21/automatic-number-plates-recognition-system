@@ -1,0 +1,63 @@
+/* Your existing CSS */
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
+
+
+
+.navbar-nav .nav-item {
+  margin-right: 10%; /* Increase spacing between navbar items */
+  font-size: 20px;
+  font-weight: bold;;
+}
+
+
+/* Alerts */
+.alert {
+  margin-top: 20px; /* Add spacing between alerts and other elements */
+}
+
+
+/* Add fav icons to links */
+#home::before {
+  content: "\f015";
+  font-family: FontAwesome;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold
+  
+}
+
+#profiles::before {
+  content: "\f007";
+  font-family: FontAwesome;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold
+}
+
+#settings::before {
+  content: "\f013";
+  font-family: FontAwesome;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold
+}
+
+#help::before {
+  content: "\f128";
+  font-family: FontAwesome;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold
+}
+
+#logout::before {
+  content: "\f08b";
+  font-family: FontAwesome;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+

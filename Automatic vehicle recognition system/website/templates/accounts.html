@@ -1,0 +1,44 @@
+{# accounts.html #}
+{% extends "base.html" %} 
+
+{% block content %}
+  <h1>Manage Guard Accounts</h1>
+
+  {% if accounts %}
+    <table class="table table-striped table-hover"> 
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for account in accounts %}
+        <tr> 
+          <td>{{ account.username }}</td>
+          <td>{{ account.email }}</td>
+          <td>
+            <a href="{{ url_for('accounts.delete_account', guard_id=account.guard_id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this account?')">Delete</a>
+            <a href="{{ url_for('accounts.toggle_superuser', guard_id=account.guard_id) }}" class="btn btn-primary btn-sm">
+              {% if account.supervisor %} Remove Supervisor {% else %} Make Supervisor {% endif %} 
+          </a>
+
+          <a href="{{ url_for('accounts.toggle_suspended', guard_id=account.guard_id) }}" class="btn btn-primary btn-sm">
+            {% if account.suspended %} Remove Suspend {% else %} suspend account {% endif %} 
+        </a>
+
+        <a href="{{ url_for('forgot.forgot_password', email = account.email) }}">Change Password </a>
+
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    
+  {% else %}
+    <p>No accounts found.</p>
+  {% endif %}
+  <a class="nav-item nav-link" id="signUp" href="/sign-up">Add New Guard</a>
+{% endblock %} 
+

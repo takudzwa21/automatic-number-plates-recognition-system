@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Deleted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #336699;
+        }
+    </style>
+</head>
+<body>
+    <h1>Client Account Deletion Notification</h1>
+
+    <p>Dear Admin,</p>
+
+    <p>This is to confirm that the following client account has been deleted from the system:</p>
+
+    <h3>Client Details:</h3>
+    <ul>
+        <li><strong>Name:</strong> {{ client_name }}</li>
+        <li><strong>Email:</strong> {{ client_email }}</li>
+    </ul>
+
+    <p>Sincerely,<br>
+    Your System Name</p>
+</body>
+</html>

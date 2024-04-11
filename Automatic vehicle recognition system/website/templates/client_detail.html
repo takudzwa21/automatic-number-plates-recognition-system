@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Client Details - {{ client.client_id }}{% endblock %}
+{% block content %}
+
+<div class="container"> 
+  <div class="row">
+    <div class="col-md-8 card"> 
+      <h1>Client Details</h1>
+
+      <p class="m-2"><strong>Client ID.:</strong> {{ client.client_id }}</p>
+      <p class="m-2"><strong>First Name:</strong> {{ client.first_name }}</p>
+      <p class="m-2"><strong>Last Name:</strong> {{ client.last_name }}</p>
+      <p class="m-2"><strong>Email:</strong> {{ client.email }}</p>
+      <a href="{{ url_for('client_routes.update_client', client_id=client.client_id) }}" class="btn btn-primary m-2">Update</a> 
+      <a href="{{ url_for('client_routes.delete_client',client_id=client.client_id) }}" class="btn btn-danger m-2">Delete</a> 
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col card">
+      <h2>Vehicles</h2>
+      <form class="form-inline mb-3" method="GET" action="{{ url_for('vehicle_routes.search_vehicles', client_id=client.client_id) }}">
+        <input class="form-control mr-sm-2" type="search" id="searchInput" name="search_term" placeholder="Search.">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    
+      <a href="{{ url_for('vehicle_routes.add_vehicle', client_id=client.client_id) }}" class="btn btn-success m-2">Add New Vehicle</a> 
+      {% if vehicle_records %} 
+            <table class="table table-striped table-bordered">
+                <tbody>
+                  {% for record in vehicle_records %}
+                  <tr>
+                    <td>{{ record.plate_num }}</td> 
+                    <td>{{ record.make }}</td> 
+                    <td>{{ record.color }}</td>
+                    <td>
+                      <a href="{{ url_for('vehicle_routes.update_vehicle', vehicle_id=record.vehicle_id) }}" class="btn btn-primary btn-sm">Update</a> 
+                      <a href="{{ url_for('vehicle_routes.delete_vehicle', vehicle_id=record.vehicle_id) }}" class="btn btn-danger btn-sm">Delete</a> 
+                    </td>
+                  </tr>
+                  {% endfor %} 
+                </tbody>
+              </table>
+        
+      {% else %}
+      <p>No vehicle records found.</p>
+      {% endif %} 
+    </div>
+
+ </div>
+</div> 
+
+{% endblock %} 
+

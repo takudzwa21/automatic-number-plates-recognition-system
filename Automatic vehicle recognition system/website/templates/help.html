@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!doctype html>
+<html>
+  <head>
+    {% block help %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %}About Us</title>
+    {% endblock %}
+
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f7f7f7;
+          text-align: center;
+      }
+      .content {
+          width: 100%;
+          margin: 20px auto;
+          align-items: center;
+          
+         
+      }
+      h1, h2 {
+          color: #666;
+          text-align: center;
+          color: fadedblue;
+      }
+      p {
+          color: #666;
+      }
+
+
+      .footer{
+        width: 100%;;
+        margin-top: 8em;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+
+  </style>
+
+  </head>
+  <body>
+    <div id="content">
+      
+    
+    
+      
+      <div class="content">
+          <h1>About Us</h1>
+          <p>
+            
+            Welcome to our Vehicle Recognition System! We are dedicated to providing cutting-edge technology to automate the process of vehicle recognition. We are
+            currently working as a group of students and we made this for the sake of our learning as well as to demostrate our potential and hence this project enables us
+            to gain a vast amount of practical experience.
+
+          </p>
+
+          <h2>Our Mission</h2>
+
+          <p>
+            Our mission is to simplify and enhance the process of vehicle recognition for various applications, including security, traffic management, and more. 
+            We aim to provide accurate and efficient solutions to meet the evolving needs of our customers. The main mission of this specific project is to automate the process of 
+            manual recognition of Vehicles here at Africa University gate.
+          </p>
+          <h2>Our Team</h2>
+
+          <p>
+            We are a team of passionate computer science students. 
+             Together, we strive to innovate and deliver high-quality products that make a difference.
+          </p>
+
+          
+          
+      </div>
+      
+    
+    
+    
+    </div>
+    <div class="footer">
+      {% block footer %}
+      <h3 style="color: #666;">Contact Us</h3>
+      <p>If you have any further questions or need assistance, please don't hesitate to <a href="mailto:chikomott@africau.edu">contact our support team</a>.</p>
+      &copy; Copyright 2024 by <a href="mailto:chikomott@africau.edu">VAAR and Co</a>.
+      {% endblock %}
+    </div>
+  </body>
+</html>
+
+
+
+{% endblock %}

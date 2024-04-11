@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container card mt-4"> 
+    <div class="card-body">
+      <p class="alert alert-danger">Are you sure you want to delete client: {{ client.id }} {{ client.first_name }} {{ client.last_name }}  {{ client.email }}?</p>
+
+      <form method="POST"> 
+        {{ form.hidden_tag() }}
+        <input type="hidden" name="_method" value="DELETE"> 
+        <input type="submit" class="btn btn-danger" value="Delete"> 
+
+        <a href="{{ url_for('client_routes.clients') }}" class="btn btn-secondary">Cancel</a>
+      </form> 
+    </div>
+  </div> 
+
+{% endblock %}
